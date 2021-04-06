@@ -42,6 +42,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         //private bool m_Jumping;
         private AudioSource m_AudioSource;
+        public float animThreshold = 0f;
 
         [Header("Animations")]
         public Animator animator;
@@ -213,22 +214,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
             bool waswalking = m_IsWalking;
-            animator.SetBool("playWalk", true);
 
-            /*if(m_WalkSpeed > 0 && m_IsWalking == true)
+            if(m_CharacterController.velocity.sqrMagnitude > animThreshold)
             {
-                animator.SetFloat("playWalk", m_WalkSpeed);
+                //animator.SetTrigger("playWalkTrigger");
+                animator.SetBool("playWalk", true);
+                //animator.SetFloat("playWalk", m_WalkSpeed);
             }
             else
             {
-                animator.SetBool("playWalk", false);
-            }*/
+                //animator.SetTrigger("playIdleTrigger");
 
-#if !MOBILE_INPUT
-            // On standalone builds, walk/run speed is modified by a key press.
-            // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
-#endif
+                animator.SetBool("playWalk", false);
+            }
+            /*
+            #if !MOBILE_INPUT
+                        // On standalone builds, walk/run speed is modified by a key press.
+                        // keep track of whether or not the character is walking or running
+                        m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            #endif*/
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
