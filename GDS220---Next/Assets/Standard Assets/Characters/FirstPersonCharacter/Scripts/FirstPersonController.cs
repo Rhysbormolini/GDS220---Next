@@ -43,6 +43,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        [Header("Animations")]
+        public Animator animator;
+
         // Use this for initialization
         private void Start()
         {
@@ -204,11 +207,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void GetInput(out float speed)
         {
+
             // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
             bool waswalking = m_IsWalking;
+            animator.SetBool("playWalk", true);
+
+            /*if(m_WalkSpeed > 0 && m_IsWalking == true)
+            {
+                animator.SetFloat("playWalk", m_WalkSpeed);
+            }
+            else
+            {
+                animator.SetBool("playWalk", false);
+            }*/
 
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
@@ -223,6 +237,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (m_Input.sqrMagnitude > 1)
             {
                 m_Input.Normalize();
+                
             }
 
             // handle speed change to give an fov kick
