@@ -9,7 +9,7 @@ public class EnvironmentShift : MonoBehaviour
     public GameObject otherModel, currentModel;
     int visCounter;
     bool previousFrame, currentFrame;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class EnvironmentShift : MonoBehaviour
             Debug.Log("Object is no longer visible");
             currentFrame = false;
             OnBecameInvisible();
-            
+
         }
 
         previousFrame = currentFrame;
