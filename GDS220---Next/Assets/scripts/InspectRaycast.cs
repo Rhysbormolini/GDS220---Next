@@ -12,6 +12,9 @@ public class InspectRaycast : MonoBehaviour
     [SerializeField] private Image crosshair;
     private bool isCrosshairActive;
     private bool doOnce;
+    public bool isOpen, fridgeOpen;
+
+    public GameObject door, fridgeDoor;
 
     private void Update()
     {
@@ -32,9 +35,47 @@ public class InspectRaycast : MonoBehaviour
                 isCrosshairActive = true;
                 doOnce = true;
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    raycastedObj.ShowExtraInfo();
+                    raycastedObj.ShowExtraInfo();  
+                }
+            }
+
+            if (hit.collider.CompareTag("Door"))
+            {
+                if (!doOnce)
+                {
+                    raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
+                    raycastedObj.ShowObjectName();
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    door.GetComponent<Animator>().enabled = true;
+                    isOpen = true;
+                }
+            }
+
+            if (hit.collider.CompareTag("FridgeDoor"))
+            {
+                if (!doOnce)
+                {
+                    raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
+                    raycastedObj.ShowObjectName();
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    fridgeDoor.GetComponent<Animator>().enabled = true;
+                    fridgeOpen = true;
                 }
             }
         }

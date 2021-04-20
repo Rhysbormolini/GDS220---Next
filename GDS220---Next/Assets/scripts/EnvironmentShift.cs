@@ -7,7 +7,7 @@ public class EnvironmentShift : MonoBehaviour
     Renderer renderer;
 
     public GameObject otherModel, currentModel;
-    int visCounter;
+    public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
 
 
@@ -20,7 +20,7 @@ public class EnvironmentShift : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (renderer.isVisible)
+        if (renderer.isVisible && inspectRay.isOpen == true || renderer.isVisible && inspectRay.fridgeOpen == true)
         {
             Debug.Log("Object is visible");
             currentFrame = true;
