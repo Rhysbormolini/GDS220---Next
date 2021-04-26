@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvironmentShift : MonoBehaviour
+public class PersonShift : MonoBehaviour
 {
     Renderer renderer;
 
-    public GameObject otherModel, currentModel;
+    public GameObject oldManModel, exModel;
     public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
 
@@ -20,7 +20,7 @@ public class EnvironmentShift : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (renderer.isVisible && inspectRay.isOpen == true || renderer.isVisible && inspectRay.fridgeOpen == true)
+        if (renderer.isVisible && inspectRay.isOpen == true)
         {
             Debug.Log("Object is visible");
             currentFrame = true;
@@ -40,8 +40,8 @@ public class EnvironmentShift : MonoBehaviour
     {
         if (currentFrame == false && previousFrame == true)
         {
-            currentModel.SetActive(false);
-            otherModel.SetActive(true);
+            exModel.SetActive(false);
+            oldManModel.SetActive(true);
         }
         //enabled = false;
     }
