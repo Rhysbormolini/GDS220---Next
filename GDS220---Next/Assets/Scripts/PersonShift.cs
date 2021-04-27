@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PersonShift : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PersonShift : MonoBehaviour
     public GameObject oldManModel, exModel;
     public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
-
+    public PlayableDirector openDoor;
+    private bool canPlay = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +26,17 @@ public class PersonShift : MonoBehaviour
         {
             Debug.Log("Object is visible");
             currentFrame = true;
+            if (canPlay)
+            {
+                openDoor.Play();
+                canPlay = false;
+            }    
         }
         else
         {
             Debug.Log("Object is no longer visible");
             currentFrame = false;
             OnBecameInvisible();
-
         }
 
         previousFrame = currentFrame;
@@ -42,6 +48,9 @@ public class PersonShift : MonoBehaviour
         {
             exModel.SetActive(false);
             oldManModel.SetActive(true);
+            openDoor.time = 0;
+            openDoor.Stop();
+            openDoor.Evaluate();
         }
         //enabled = false;
     }
