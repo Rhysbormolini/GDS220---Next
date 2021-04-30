@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class FingerShift : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class FingerShift : MonoBehaviour
     public GameObject milkModel, fingerModel;
     public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
+    public PlayableDirector openFridge;
+    private bool canPlay = true;
 
 
     // Start is called before the first frame update
@@ -24,6 +27,11 @@ public class FingerShift : MonoBehaviour
         {
             Debug.Log("Object is visible");
             currentFrame = true;
+            if (canPlay)
+            {
+                openFridge.Play();
+                canPlay = false;
+            }
         }
         else
         {
@@ -42,6 +50,9 @@ public class FingerShift : MonoBehaviour
         {
             fingerModel.SetActive(false);
             milkModel.SetActive(true);
+            openFridge.time = 0;
+            openFridge.Stop();
+            openFridge.Evaluate();
         }
         //enabled = false;
     }
