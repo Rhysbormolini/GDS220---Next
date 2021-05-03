@@ -17,7 +17,7 @@ public class InspectRaycast : MonoBehaviour
     private bool canPlay = true;
     public PlayableDirector pourMilk;
 
-    public GameObject door, fridgeDoor, milk, doorMilk;
+    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator;
 
     private void Update()
     {
@@ -122,6 +122,8 @@ public class InspectRaycast : MonoBehaviour
                         Debug.Log("Pouring Milk");
                     }
 
+                    doorMilk.SetActive(true);
+                    protagonistAnimator.GetComponent<Animator>().enabled = false;
                 }
             }
         }
@@ -133,8 +135,6 @@ public class InspectRaycast : MonoBehaviour
                 CrosshairChange(false);
                 doOnce = false;
             }
-
-            doorMilk.SetActive(true);
         }
     }
 
