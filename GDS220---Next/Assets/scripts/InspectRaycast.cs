@@ -17,8 +17,7 @@ public class InspectRaycast : MonoBehaviour
     private bool canPlay = true;
     public PlayableDirector pourMilk;
 
-    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator;
-
+    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas;
     private void Update()
     {
         RaycastHit hit;
@@ -124,6 +123,8 @@ public class InspectRaycast : MonoBehaviour
 
                     doorMilk.SetActive(true);
                     protagonistAnimator.GetComponent<Animator>().enabled = false;
+                    canvas.SetActive(false);
+
                 }
             }
         }
