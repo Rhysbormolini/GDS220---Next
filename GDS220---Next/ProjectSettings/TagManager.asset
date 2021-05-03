@@ -7,6 +7,8 @@ TagManager:
   - InteractObject
   - Door
   - FridgeDoor
+  - Milk
+  - Winston
   layers:
   - Default
   - TransparentFX

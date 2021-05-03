@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class InspectRaycast : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class InspectRaycast : MonoBehaviour
     private bool isCrosshairActive;
     private bool doOnce;
     public bool isOpen, fridgeOpen;
+    private bool canPlay = true;
+    public PlayableDirector pourMilk;
 
-    public GameObject door, fridgeDoor;
+    public GameObject door, fridgeDoor, milk;
 
     private void Update()
     {
@@ -76,6 +79,48 @@ public class InspectRaycast : MonoBehaviour
                 {
                     fridgeDoor.GetComponent<Animator>().enabled = true;
                     fridgeOpen = true;
+                }
+            }
+
+            if (hit.collider.CompareTag("Milk"))
+            {
+                if (!doOnce)
+                {
+                    raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
+                    raycastedObj.ShowObjectName();
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    milk.SetActive(false);
+                    Debug.Log("Picked Up Milk");
+                }
+            }
+
+            if (hit.collider.CompareTag("Winston"))
+            {
+                if (!doOnce)
+                {
+                    raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
+                    raycastedObj.ShowObjectName();
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (canPlay)
+                    {
+                        pourMilk.Play();
+                        canPlay = false;
+                        Debug.Log("Pouring Milk");
+                    }
                 }
             }
         }
