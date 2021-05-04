@@ -123,7 +123,7 @@ public class InspectRaycast : MonoBehaviour
 
                     doorMilk.SetActive(true);
                     protagonistAnimator.GetComponent<Animator>().Play("", 0, 0f);
-                    protagonistAnimator.GetComponent<Animator>().enabled = false;
+                    protagonistAnimator.GetComponent<Animator>().speed = 0f;
                     winstonAnimator.GetComponent<Animator>().Play("", 0, 0f);
                     winstonAnimator.GetComponent<Animator>().speed = 0f;
 
