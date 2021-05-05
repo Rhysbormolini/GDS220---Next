@@ -20,6 +20,16 @@ public class ObjectController : MonoBehaviour
         inspectController.HideName();
     }
 
+    public void ShowE()
+    {
+        inspectController.ShowE();
+    }
+
+    public void HideE()
+    {
+        inspectController.HideE();
+    }
+
     public void ShowExtraInfo()
     {
         inspectController.ShowAdditionalInfo(objectExtraInfo);

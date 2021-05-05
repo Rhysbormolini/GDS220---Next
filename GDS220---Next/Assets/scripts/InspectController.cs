@@ -7,6 +7,8 @@ public class InspectController : MonoBehaviour
 {
     [SerializeField] private GameObject objectNameBG;
     [SerializeField] private Text ObjectnameUI;
+    [SerializeField] private GameObject objectEBG;
+    [SerializeField] private Text ObjectEUI;
 
     [SerializeField] private float onScreenTimer;
     [SerializeField] private Text extraInfoUI;
@@ -18,6 +20,7 @@ public class InspectController : MonoBehaviour
     {
         objectNameBG.SetActive(false);
         extraInfoBG.SetActive(false);
+        objectEBG.SetActive(false);
     }
 
     private void Update()
@@ -45,6 +48,16 @@ public class InspectController : MonoBehaviour
     {
         objectNameBG.SetActive(false);
         ObjectnameUI.text = " ";
+    }
+
+    public void ShowE()
+    {
+        objectEBG.SetActive(true);
+    }
+
+    public void HideE()
+    {
+        objectEBG.SetActive(false);
     }
 
     public void ShowAdditionalInfo(string newInfo)

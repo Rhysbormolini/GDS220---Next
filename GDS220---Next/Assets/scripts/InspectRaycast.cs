@@ -14,7 +14,7 @@ public class InspectRaycast : MonoBehaviour
     private bool isCrosshairActive;
     private bool doOnce;
     public bool isOpen, fridgeOpen;
-    private bool canPlay = true;
+    private bool canPlay = false;
     public PlayableDirector pourMilk;
 
     public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator;
@@ -30,7 +30,8 @@ public class InspectRaycast : MonoBehaviour
                 if (!doOnce)
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
-                    raycastedObj.ShowObjectName(); 
+                    raycastedObj.ShowObjectName();
+                    raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
@@ -49,6 +50,7 @@ public class InspectRaycast : MonoBehaviour
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
                     raycastedObj.ShowObjectName();
+                    raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
@@ -68,6 +70,7 @@ public class InspectRaycast : MonoBehaviour
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
                     raycastedObj.ShowObjectName();
+                    raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
@@ -87,6 +90,7 @@ public class InspectRaycast : MonoBehaviour
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
                     raycastedObj.ShowObjectName();
+                    raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
@@ -97,6 +101,7 @@ public class InspectRaycast : MonoBehaviour
                 {
                     milk.SetActive(false);
                     Debug.Log("Picked Up Milk");
+                    canPlay = true;
                 }
             }
 
@@ -106,30 +111,31 @@ public class InspectRaycast : MonoBehaviour
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
                     raycastedObj.ShowObjectName();
+                    raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
                 isCrosshairActive = true;
                 doOnce = true;
-
-                if (Input.GetKeyDown(KeyCode.E))
+                
+                if (canPlay == true)
                 {
-                    if (canPlay)
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
                         pourMilk.Play();
                         canPlay = false;
                         Debug.Log("Pouring Milk");
+
+                        doorMilk.SetActive(true);
+                        protagonistAnimator.GetComponent<Animator>().Play("", 0, 0f);
+                        protagonistAnimator.GetComponent<Animator>().speed = 0f;
+                        winstonAnimator.GetComponent<Animator>().Play("", 0, 0f);
+                        winstonAnimator.GetComponent<Animator>().speed = 0f;
+
+                        canvas.SetActive(false);
+
                     }
-
-                    doorMilk.SetActive(true);
-                    protagonistAnimator.GetComponent<Animator>().Play("", 0, 0f);
-                    protagonistAnimator.GetComponent<Animator>().speed = 0f;
-                    winstonAnimator.GetComponent<Animator>().Play("", 0, 0f);
-                    winstonAnimator.GetComponent<Animator>().speed = 0f;
-
-                    canvas.SetActive(false);
-
-                }
+                } 
             }
         }
         else
@@ -137,6 +143,7 @@ public class InspectRaycast : MonoBehaviour
             if (isCrosshairActive)
             {
                 raycastedObj.HideObjectName();
+                raycastedObj.HideE();
                 CrosshairChange(false);
                 doOnce = false;
             }
