@@ -5,6 +5,8 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public float timer;
+    public GameObject trigger;
+    public AudioSource knock;
     
     IEnumerator StartTimer()
     {
@@ -18,7 +20,10 @@ public class Timer : MonoBehaviour
 
         if (timer <= 0)
         {
-            // play knock sound
+            knock.Play();
+            trigger.GetComponent<Collider>().enabled = false;
+            yield return new WaitForSeconds(10);
+            knock.Play();
         }
     }
 
