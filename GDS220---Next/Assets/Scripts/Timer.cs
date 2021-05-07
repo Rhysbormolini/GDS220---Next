@@ -22,8 +22,6 @@ public class Timer : MonoBehaviour
         {
             knock.Play();
             trigger.GetComponent<Collider>().enabled = false;
-            yield return new WaitForSeconds(10);
-            knock.Play();
         }
     }
 

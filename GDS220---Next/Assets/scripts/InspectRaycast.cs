@@ -17,6 +17,8 @@ public class InspectRaycast : MonoBehaviour
     private bool canPlay = false;
     public PlayableDirector pourMilk;
 
+    public AudioSource fridge, milkPour;
+
     public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator;
     private void Update()
     {
@@ -79,27 +81,34 @@ public class InspectRaycast : MonoBehaviour
                 {
                     raycastedObj = hit.collider.gameObject.GetComponent<ObjectController>();
                     raycastedObj.ShowObjectName();
-                    raycastedObj.ShowE();
+                    //raycastedObj.ShowE();
                     CrosshairChange(true);
                 }
 
                 isCrosshairActive = true;
                 doOnce = true;
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (doorOpen == true)
                 {
-                    fridgeDoor.GetComponent<Animator>().enabled = true;
-                    fridgeOpen = true;
-                    fridgeDoorOpen = true;
-                }
+                    raycastedObj.ShowE();
 
-                if (fridgeDoorOpen == true)
-                {
-                    raycastedObj.HideObjectName();
-                    raycastedObj.HideE();
-                    CrosshairChange(false);
-                    doOnce = false;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        fridge.Play();
+                        fridgeDoor.GetComponent<Animator>().enabled = true;
+                        fridgeOpen = true;
+                        fridgeDoorOpen = true;
+                    }
+
+                    if (fridgeDoorOpen == true)
+                    {
+                        raycastedObj.HideObjectName();
+                        raycastedObj.HideE();
+                        CrosshairChange(false);
+                        doOnce = false;
+                    }
                 }
+                
             }
 
             if (hit.collider.CompareTag("Milk"))
@@ -151,6 +160,7 @@ public class InspectRaycast : MonoBehaviour
                         protagonistAnimator.GetComponent<Animator>().speed = 0f;
                         winstonAnimator.GetComponent<Animator>().Play("Asking fo milk", 0, 0f);
                         winstonAnimator.GetComponent<Animator>().speed = 0f;
+                        //milkPour.Play();
 
                         canvas.SetActive(false);
                     }
