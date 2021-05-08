@@ -170,7 +170,6 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 071feed0c6539d7478f2fbe843899a81, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 1524905f9a465034384ef145ae529a70, type: 2}
   - {fileID: 7400000, guid: 071feed0c6539d7478f2fbe843899a81, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
@@ -779,7 +778,6 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 1bd8ea6087287ad478fe86be8bf075ec, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 1bd8ea6087287ad478fe86be8bf075ec, type: 2}
-  - {fileID: 7400000, guid: 70f8b823efb17ba4cb6e8c0b1ec5ba5b, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -870,7 +868,6 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 1524905f9a465034384ef145ae529a70, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 409b2dc0997c20b4ab490d08b35435cc, type: 2}
   - {fileID: 7400000, guid: 1524905f9a465034384ef145ae529a70, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1

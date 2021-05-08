@@ -6,11 +6,19 @@ public class Timer : MonoBehaviour
 {
     public float timer;
     public GameObject trigger;
-    public AudioSource knock;
-    
+    public AudioSource knock, ope;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            StartCoroutine(StartTimer());
+        }
+    }
+
     IEnumerator StartTimer()
     {
-        timer = 60f;
+        timer = 30f;
 
         while (timer > 0)
         {
@@ -22,14 +30,6 @@ public class Timer : MonoBehaviour
         {
             knock.Play();
             trigger.GetComponent<Collider>().enabled = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            StartCoroutine(StartTimer());
         }
     }
 }
