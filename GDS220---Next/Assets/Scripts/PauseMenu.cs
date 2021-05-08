@@ -6,55 +6,51 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu, character;
-    public GameObject endGame;
-    public float timer;
-
-    void start()
-    {
-        //endGame.GetComponent<Renderer>();
-        //endGame.enabled = false;
-    }
+    public static bool GameIsPaused = false;
     
-    void update()
+    void Update()
     {
-        if (endGame.activeSelf)
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            StartCoroutine(EndTheGame());
-            character.SetActive(false);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            //StartCoroutine(EndTheGame());
+            if (GameIsPaused == true)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
-    public void ResumeGame()
+    public void Resume()
     {
         pauseMenu.SetActive(false);
-        character.SetActive(true);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        character.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
     }
 
-    public void Quit()
+    void Pause()
     {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        character.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
-
-    IEnumerator EndTheGame()
+    
+    public void Quit()
     {
-        timer = 10f;
-
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            endGame.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            character.SetActive(false);
-            yield return null;
-        }
-
-        if (timer <= 0)
-        {
-            SceneManager.LoadScene("Main Menu");
-        }
+        Debug.Log("QUIT");
+        Application.Quit();
     }
 }

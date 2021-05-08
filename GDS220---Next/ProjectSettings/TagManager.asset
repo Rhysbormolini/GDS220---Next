@@ -9,6 +9,7 @@ TagManager:
   - FridgeDoor
   - Milk
   - Winston
+  - Ring
   layers:
   - Default
   - TransparentFX

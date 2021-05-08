@@ -19,7 +19,7 @@ public class InspectRaycast : MonoBehaviour
 
     public AudioSource fridge, milkPour;
 
-    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator;
+    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator, knock;
     private void Update()
     {
         RaycastHit hit;
@@ -64,6 +64,7 @@ public class InspectRaycast : MonoBehaviour
                     door.GetComponent<Animator>().enabled = true;
                     isOpen = true;
                     doorOpen = true;
+                    knock.SetActive(false);
                 }
 
                 if (doorOpen == true)

@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         //[SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         //[SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
-        public GameObject pauseMenu, character;
+        //public GameObject pauseMenu, character;
 
         private Camera m_Camera;
         //private bool m_Jump;
@@ -70,10 +70,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            /*if (Input.GetKeyDown(KeyCode.Escape))
             {
                 pauseMenu.SetActive(true);
-            }
+                //character.GetComponent<FirstPersonController>().enabled = false;
+                //Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None;
+            }*/
 
             RotateView();
             // the jump state needs to read here to make sure it is not missed
