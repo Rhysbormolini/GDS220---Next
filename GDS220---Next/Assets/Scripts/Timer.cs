@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     public float timer;
     public GameObject trigger;
-    public AudioSource knock, ope;
+    public AudioSource knock;
 
     private void OnTriggerEnter(Collider other)
     {

@@ -17,7 +17,8 @@ public class InspectRaycast : MonoBehaviour
     private bool canPlay = false;
     public PlayableDirector pourMilk;
 
-    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator, knock, fridgeLight, glassBrokenSound;
+    public GameObject door, fridgeDoor, milk, doorMilk, protagonistAnimator, canvas, winstonAnimator, knock, fridgeLight, winston, justSomeMilk, yeaMilk;
+    public AudioSource lightsFlicker, imSorryAria, hummingSound, glassBrokenSound;
     private void Update()
     {
         RaycastHit hit;
@@ -63,6 +64,9 @@ public class InspectRaycast : MonoBehaviour
                     isOpen = true;
                     doorOpen = true;
                     knock.SetActive(false);
+                    lightsFlicker.Play();
+                    imSorryAria.Play();
+                    hummingSound.Play();
                     StartCoroutine(SmashGlass());
                 }
 
@@ -76,8 +80,8 @@ public class InspectRaycast : MonoBehaviour
 
                 IEnumerator SmashGlass()
                 {
-                    yield return new WaitForSeconds(3f);
-                    glassBrokenSound.SetActive(true);
+                    yield return new WaitForSeconds(5f);
+                    glassBrokenSound.Play();
                 }
             }
 
@@ -104,6 +108,8 @@ public class InspectRaycast : MonoBehaviour
                         fridgeOpen = true;
                         fridgeDoorOpen = true;
                         fridgeLight.SetActive(true);
+                        lightsFlicker.Play();
+                        hummingSound.Play();
                     }
 
                     if (fridgeDoorOpen == true)
@@ -163,13 +169,15 @@ public class InspectRaycast : MonoBehaviour
                         
                         canvas.SetActive(false);
                         doorMilk.SetActive(true);
-                        
+                        justSomeMilk.SetActive(false);
+                        yeaMilk.SetActive(false);
+
                         protagonistAnimator.GetComponent<Animator>().Play("Idle", 0, 0f);
                         protagonistAnimator.GetComponent<Animator>().speed = 0f;
                         winstonAnimator.GetComponent<Animator>().Play("Asking fo milk", 0, 0f);
                         winstonAnimator.GetComponent<Animator>().speed = 0f;
                     }
-                } 
+                }
             }
         }
         else

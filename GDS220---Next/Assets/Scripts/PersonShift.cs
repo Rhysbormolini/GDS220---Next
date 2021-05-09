@@ -7,7 +7,8 @@ public class PersonShift : MonoBehaviour
 {
     Renderer renderer;
 
-    public GameObject oldManModel, exModel;
+    public GameObject oldManModel, exModel, glassSmash;
+    public AudioSource lightFlicker, imSorryAria, hummingSound;
     public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
     public PlayableDirector openDoor;
@@ -48,9 +49,13 @@ public class PersonShift : MonoBehaviour
         {
             exModel.SetActive(false);
             oldManModel.SetActive(true);
+            lightFlicker.Stop();
+            imSorryAria.Stop();
+            hummingSound.Stop();
             openDoor.time = 0;
             openDoor.Stop();
             openDoor.Evaluate();
+            glassSmash.SetActive(false);
         }
         //enabled = false;
     }

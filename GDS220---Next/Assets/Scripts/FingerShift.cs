@@ -8,6 +8,7 @@ public class FingerShift : MonoBehaviour
     Renderer renderer;
 
     public GameObject milkModel, fingerModel;
+    public AudioSource lightFlicker, hummingSound;
     public InspectRaycast inspectRay;
     bool previousFrame, currentFrame;
     public PlayableDirector openFridge;
@@ -50,6 +51,8 @@ public class FingerShift : MonoBehaviour
         {
             fingerModel.SetActive(false);
             milkModel.SetActive(true);
+            lightFlicker.Stop();
+            hummingSound.Stop();
             openFridge.time = 0;
             openFridge.Stop();
             openFridge.Evaluate();
