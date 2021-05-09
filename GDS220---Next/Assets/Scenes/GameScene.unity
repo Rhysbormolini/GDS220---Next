@@ -25094,7 +25094,6 @@ MonoBehaviour:
   protagonistAnimator: {fileID: 904681964}
   canvas: {fileID: 1631739240}
   winstonAnimator: {fileID: 2141106332}
-  knock: {fileID: 1162271683}
   fridgeLight: {fileID: 1068496510}
   winston: {fileID: 2141106332}
   justSomeMilk: {fileID: 967351811}
@@ -25103,6 +25102,7 @@ MonoBehaviour:
   imSorryAria: {fileID: 2011116944}
   hummingSound: {fileID: 1703916051}
   glassBrokenSound: {fileID: 720809719}
+  knock: {fileID: 759481109}
 --- !u!1 &859363484 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 129800, guid: 1d3b1a1513de66247974634911345b98,
@@ -46177,13 +46177,13 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 937b7f0638f2dbf48aafb746c9878596, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 130
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 2
@@ -50077,7 +50077,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 125
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
